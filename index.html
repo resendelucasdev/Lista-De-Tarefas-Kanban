@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban de Tarefas</title>
+    <link rel="stylesheet" href="/Desafio-07-Lista-De-Tarefas/CSS/Style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Navegação</h2>
+            <ul>
+                <li><a href="#">Página Inicial</a></li>
+                <li><a href="#">Minhas Tarefas</a></li>
+                <li><a href="#">Configurações</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <div class="task-header">
+                <h2>Adicionar uma tarefa</h2>
+                <input type="text" id="taskInput" placeholder="Descreva a tarefa">
+                <button onclick="addTask()">Criar tarefa</button>
+            </div>
+
+            <div class="task-board">
+                <h2>Quadro de tarefas</h2>
+                <ul id="taskList">
+                    <li>
+                        <span>Alinhamento semanal 📅</span>
+                        <button onclick="removeTask(this)">❌</button>
+                    </li>
+                    <li>
+                        <span>Reunião com cliente 📁</span>
+                        <button onclick="removeTask(this)">❌</button>
+                    </li>
+                    <li>
+                        <span>Apresentação ✨</span>
+                        <button onclick="removeTask(this)">❌</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+            if (taskText !== "") {
+                const taskList = document.getElementById('taskList');
+                const newTask = document.createElement('li');
+                newTask.innerHTML = `<span>${taskText}</span><button onclick="removeTask(this)">❌</button>`;
+                taskList.appendChild(newTask);
+                taskInput.value = ""; // Limpa o campo de entrada
+            }
+        }
+
+        function removeTask(button) {
+            const taskItem = button.parentElement;
+            taskItem.remove();
+        }
+    </script>
+</body>
+</html>
